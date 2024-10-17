@@ -1,0 +1,40 @@
+<p>add-ticket-reply works!</p>
+<div class="add-ticket-reply-container">
+    <h2>Add Ticket Reply</h2>
+  
+    <form [formGroup]="addTicketReplyForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketid">Ticket ID:</label>
+        <input id="ticketid" formControlName="ticketid" type="text" />
+        <div *ngIf="addTicketReplyForm.get('ticketid')?.invalid && addTicketReplyForm.get('ticketid')?.touched">
+          Ticket ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="clientid">Client ID (Optional):</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+      </div>
+  
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message"></textarea>
+        <div *ngIf="addTicketReplyForm.get('message')?.invalid && addTicketReplyForm.get('message')?.touched">
+          Message is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Reply' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

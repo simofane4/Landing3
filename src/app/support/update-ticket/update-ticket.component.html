@@ -1,0 +1,55 @@
+<div class="update-ticket-container">
+    <h2>Update Ticket</h2>
+  
+    <form [formGroup]="updateTicketForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketid">Ticket ID:</label>
+        <input id="ticketid" formControlName="ticketid" type="text" />
+        <div *ngIf="updateTicketForm.get('ticketid')?.invalid && updateTicketForm.get('ticketid')?.touched">
+          Ticket ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" formControlName="status">
+          <option value="Open">Open</option>
+          <option value="Answered">Answered</option>
+          <option value="Closed">Closed</option>
+          <option value="On Hold">On Hold</option>
+        </select>
+        <div *ngIf="updateTicketForm.get('status')?.invalid && updateTicketForm.get('status')?.touched">
+          Status is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="subject">Subject:</label>
+        <input id="subject" formControlName="subject" type="text" />
+        <div *ngIf="updateTicketForm.get('subject')?.invalid && updateTicketForm.get('subject')?.touched">
+          Subject is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message"></textarea>
+        <div *ngIf="updateTicketForm.get('message')?.invalid && updateTicketForm.get('message')?.touched">
+          Message is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Ticket' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

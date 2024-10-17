@@ -1,0 +1,14 @@
+<p>fraud-order works!</p>
+<h3>Mark Order as Fraud</h3>
+<form (submit)="markAsFraud()"> <!-- Form bash nqaydu order ID -->
+  <div>
+    <label for="orderId">Order ID:</label>
+    <input type="text" [(ngModel)]="orderId" name="orderId" required /> <!-- Input ID dyal order -->
+  </div>
+  <button type="submit">Mark as Fraud</button> <!-- Button bach nsift l-request -->
+</form>
+
+<div *ngIf="response"> <!-- Ila kan l-response, affichiwha -->
+  <h4>Response</h4>
+  <pre>{{ response | json }}</pre> <!-- JSON format dyal response -->
+</div>

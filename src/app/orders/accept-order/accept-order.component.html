@@ -1,0 +1,14 @@
+<p>accept-order works!</p>
+<h3>Qbel Order</h3>
+<form (submit)="acceptOrder()"> <!-- L-form bach tqbel l-order -->
+  <div>
+    <label for="orderId">Order ID:</label>
+    <input type="text" [(ngModel)]="orderId" name="orderId" required /> <!-- Input bach l-user ykteb l-ID -->
+  </div>
+  <button type="submit">Qbel Order</button> <!-- Button bach tqbel -->
+</form>
+
+<div *ngIf="response"> <!-- Ila kan l-response, n'affichiwha -->
+  <h4>Response</h4>
+  <pre>{{ response | json }}</pre> <!-- Display dyal l-response f JSON -->
+</div>

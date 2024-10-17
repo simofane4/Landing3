@@ -1,0 +1,27 @@
+<p>delete-contact works!</p>
+<div class="delete-contact-container">
+    <h2>Delete Contact</h2>
+  
+    <form [formGroup]="deleteContactForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="contactid">Contact ID:</label>
+        <input id="contactid" formControlName="contactid" type="text" />
+        <div *ngIf="deleteContactForm.get('contactid')?.invalid && deleteContactForm.get('contactid')?.touched">
+          Contact ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Contact' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

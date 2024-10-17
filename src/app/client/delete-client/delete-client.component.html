@@ -1,0 +1,27 @@
+<p>delete-client works!</p>
+<div class="delete-client-container">
+    <h2>Delete Client</h2>
+  
+    <form [formGroup]="deleteClientForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="deleteClientForm.get('clientid')?.invalid && deleteClientForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Client' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

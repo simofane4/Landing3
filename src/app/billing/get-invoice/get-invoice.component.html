@@ -1,0 +1,33 @@
+<p>get-invoice works!</p>
+<div class="get-invoice-container">
+    <h2>Retrieve Invoice</h2>
+  
+    <div class="form-group">
+      <label for="invoiceId">Invoice ID:</label>
+      <input #invoiceIdInput id="invoiceId" type="text" />
+      <button (click)="getInvoice(invoiceIdInput.value)" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Invoice' }}
+      </button>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="invoice" class="invoice-details">
+      <h3>Invoice Details</h3>
+      <p><strong>ID:</strong> {{ invoice.id }}</p>
+      <p><strong>Status:</strong> {{ invoice.status }}</p>
+      <p><strong>Date:</strong> {{ invoice.date }}</p>
+      <p><strong>Due Date:</strong> {{ invoice.duedate }}</p>
+      <p><strong>Total:</strong> {{ invoice.total }}</p>
+  
+      <h4>Items</h4>
+      <ul>
+        <li *ngFor="let item of invoice.items">
+          <strong>Description:</strong> {{ item.description }} | <strong>Amount:</strong> {{ item.amount }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

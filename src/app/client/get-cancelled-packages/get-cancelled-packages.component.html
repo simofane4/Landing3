@@ -1,0 +1,29 @@
+<p>get-cancelled-packages works!</p>
+<div class="get-cancelled-packages-container">
+    <h2>Cancelled Packages</h2>
+  
+    <button (click)="fetchCancelledPackages()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Cancelled Packages' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="cancelledPackages.length > 0" class="packages-list">
+      <h3>List of Cancelled Packages</h3>
+      <ul>
+        <li *ngFor="let package of cancelledPackages">
+          <strong>Package ID:</strong> {{ package.id }} |
+          <strong>Client Name:</strong> {{ package.clientname }} |
+          <strong>Product:</strong> {{ package.product }} |
+          <strong>Status:</strong> {{ package.status }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="cancelledPackages.length === 0 && !errorMessage && !loading">
+      <p>No cancelled packages found.</p>
+    </div>
+  </div>
+  

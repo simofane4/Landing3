@@ -1,0 +1,22 @@
+<p>get-order-statuses works!</p>
+<div *ngIf="statuses?.status.length > 0; else noStatuses">
+  <h3>Order Statuses</h3>
+  <ul>
+    <li *ngFor="let status of statuses.status">
+      <strong>{{ status.title }}:</strong> {{ status.count }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="jsonResponse">
+  <h3>Order Statuses JSON</h3>
+  <pre class="json-display">{{ jsonResponse | json }}</pre>
+</div>
+
+<ng-template #noData>
+  <p>No data available.</p>
+</ng-template>
+
+<ng-template #noStatuses>
+  <p>No statuses available.</p>
+</ng-template>

@@ -1,0 +1,52 @@
+<div class="update-transaction-container">
+    <h2>Update Transaction</h2>
+  
+    <form [formGroup]="updateTransactionForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="transactionId">Transaction ID:</label>
+        <input id="transactionId" formControlName="transactionId" type="text" />
+        <div *ngIf="updateTransactionForm.get('transactionId')?.invalid && updateTransactionForm.get('transactionId')?.touched">
+          Transaction ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amountIn">Amount In:</label>
+        <input id="amountIn" formControlName="amountIn" type="text" />
+        <div *ngIf="updateTransactionForm.get('amountIn')?.invalid && updateTransactionForm.get('amountIn')?.touched">
+          Please enter a valid amount in.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amountOut">Amount Out:</label>
+        <input id="amountOut" formControlName="amountOut" type="text" />
+        <div *ngIf="updateTransactionForm.get('amountOut')?.invalid && updateTransactionForm.get('amountOut')?.touched">
+          Please enter a valid amount out.
+        </div>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" type="text" />
+      </div>
+  
+      <div>
+        <label for="date">Transaction Date:</label>
+        <input id="date" formControlName="date" type="date" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Transaction' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

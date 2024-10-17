@@ -1,0 +1,64 @@
+<p>add-transaction works!</p>
+<div class="add-transaction-container">
+    <h2>Add Transaction</h2>
+  
+    <form [formGroup]="addTransactionForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="addTransactionForm.get('clientId')?.invalid && addTransactionForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amountIn">Amount In:</label>
+        <input id="amountIn" formControlName="amountIn" type="text" />
+        <div *ngIf="addTransactionForm.get('amountIn')?.invalid && addTransactionForm.get('amountIn')?.touched">
+          Please enter a valid amount.
+        </div>
+      </div>
+  
+      <div>
+        <label for="paymentMethod">Payment Method:</label>
+        <input id="paymentMethod" formControlName="paymentMethod" type="text" />
+        <div *ngIf="addTransactionForm.get('paymentMethod')?.invalid && addTransactionForm.get('paymentMethod')?.touched">
+          Payment Method is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="date">Date:</label>
+        <input id="date" formControlName="date" type="date" />
+        <div *ngIf="addTransactionForm.get('date')?.invalid && addTransactionForm.get('date')?.touched">
+          Date is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" type="text" />
+        <div *ngIf="addTransactionForm.get('description')?.invalid && addTransactionForm.get('description')?.touched">
+          Description is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="invoiceId">Invoice ID (optional):</label>
+        <input id="invoiceId" formControlName="invoiceId" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Transaction' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

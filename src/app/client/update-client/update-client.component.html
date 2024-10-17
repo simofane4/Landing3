@@ -1,0 +1,103 @@
+<div class="update-client-container">
+    <h2>Update Client Information</h2>
+  
+    <form [formGroup]="updateClientForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="updateClientForm.get('clientid')?.invalid && updateClientForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="firstname">First Name:</label>
+        <input id="firstname" formControlName="firstname" type="text" />
+        <div *ngIf="updateClientForm.get('firstname')?.invalid && updateClientForm.get('firstname')?.touched">
+          First Name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="lastname">Last Name:</label>
+        <input id="lastname" formControlName="lastname" type="text" />
+        <div *ngIf="updateClientForm.get('lastname')?.invalid && updateClientForm.get('lastname')?.touched">
+          Last Name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="updateClientForm.get('email')?.invalid && updateClientForm.get('email')?.touched">
+          A valid email is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="address1">Address:</label>
+        <input id="address1" formControlName="address1" type="text" />
+        <div *ngIf="updateClientForm.get('address1')?.invalid && updateClientForm.get('address1')?.touched">
+          Address is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="city">City:</label>
+        <input id="city" formControlName="city" type="text" />
+        <div *ngIf="updateClientForm.get('city')?.invalid && updateClientForm.get('city')?.touched">
+          City is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="state">State:</label>
+        <input id="state" formControlName="state" type="text" />
+        <div *ngIf="updateClientForm.get('state')?.invalid && updateClientForm.get('state')?.touched">
+          State is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="postcode">Postcode:</label>
+        <input id="postcode" formControlName="postcode" type="text" />
+        <div *ngIf="updateClientForm.get('postcode')?.invalid && updateClientForm.get('postcode')?.touched">
+          Postcode is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="country">Country:</label>
+        <input id="country" formControlName="country" type="text" />
+        <div *ngIf="updateClientForm.get('country')?.invalid && updateClientForm.get('country')?.touched">
+          Country is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="phonenumber">Phone Number:</label>
+        <input id="phonenumber" formControlName="phonenumber" type="text" />
+        <div *ngIf="updateClientForm.get('phonenumber')?.invalid && updateClientForm.get('phonenumber')?.touched">
+          Phone number is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="companyname">Company Name (Optional):</label>
+        <input id="companyname" formControlName="companyname" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Client' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

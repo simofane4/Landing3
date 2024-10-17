@@ -1,0 +1,44 @@
+<p>add-cancel-request works!</p>
+<div class="add-cancel-request-container">
+    <h2>Add Cancel Request</h2>
+  
+    <form [formGroup]="addCancelRequestForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="serviceid">Service ID:</label>
+        <input id="serviceid" formControlName="serviceid" type="text" />
+        <div *ngIf="addCancelRequestForm.get('serviceid')?.invalid && addCancelRequestForm.get('serviceid')?.touched">
+          Service ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="type">Cancellation Type:</label>
+        <select id="type" formControlName="type">
+          <option value="">Select Type</option>
+          <option value="Immediate">Immediate</option>
+          <option value="End of Billing Period">End of Billing Period</option>
+        </select>
+        <div *ngIf="addCancelRequestForm.get('type')?.invalid && addCancelRequestForm.get('type')?.touched">
+          Cancellation type is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="reason">Cancellation Reason (Optional):</label>
+        <textarea id="reason" formControlName="reason"></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Submitting...' : 'Submit Cancel Request' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

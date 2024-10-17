@@ -1,0 +1,27 @@
+<p>accept-quote works!</p>
+<div class="accept-quote-container">
+    <h2>Accept Quote</h2>
+  
+    <form [formGroup]="acceptQuoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="quoteId">Quote ID:</label>
+        <input id="quoteId" formControlName="quoteId" type="text" />
+        <div *ngIf="acceptQuoteForm.get('quoteId')?.invalid && acceptQuoteForm.get('quoteId')?.touched">
+          Quote ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Accepting...' : 'Accept Quote' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

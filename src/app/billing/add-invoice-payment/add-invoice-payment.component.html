@@ -1,0 +1,59 @@
+<p>add-invoice-payment works!</p>
+<div class="add-invoice-payment-container">
+    <h2>Add Invoice Payment</h2>
+  
+    <form [formGroup]="addInvoicePaymentForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="invoiceId">Invoice ID:</label>
+        <input id="invoiceId" formControlName="invoiceId" type="text" />
+        <div *ngIf="addInvoicePaymentForm.get('invoiceId')?.invalid && addInvoicePaymentForm.get('invoiceId')?.touched">
+          Invoice ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="transactionId">Transaction ID:</label>
+        <input id="transactionId" formControlName="transactionId" type="text" />
+        <div *ngIf="addInvoicePaymentForm.get('transactionId')?.invalid && addInvoicePaymentForm.get('transactionId')?.touched">
+          Transaction ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amount">Amount:</label>
+        <input id="amount" formControlName="amount" type="text" />
+        <div *ngIf="addInvoicePaymentForm.get('amount')?.invalid && addInvoicePaymentForm.get('amount')?.touched">
+          Please enter a valid amount.
+        </div>
+      </div>
+  
+      <div>
+        <label for="paymentMethod">Payment Method:</label>
+        <input id="paymentMethod" formControlName="paymentMethod" type="text" />
+        <div *ngIf="addInvoicePaymentForm.get('paymentMethod')?.invalid && addInvoicePaymentForm.get('paymentMethod')?.touched">
+          Payment Method is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="date">Payment Date:</label>
+        <input id="date" formControlName="date" type="date" />
+        <div *ngIf="addInvoicePaymentForm.get('date')?.invalid && addInvoicePaymentForm.get('date')?.touched">
+          Payment Date is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Payment' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

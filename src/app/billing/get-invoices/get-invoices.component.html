@@ -1,0 +1,29 @@
+<p>get-invoices works!</p>
+<div class="get-invoices-container">
+    <h2>Invoices List</h2>
+  
+    <button (click)="fetchInvoices()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Invoices' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="invoices.length > 0" class="invoices-list">
+      <h3>Invoices</h3>
+      <ul>
+        <li *ngFor="let invoice of invoices">
+          <strong>ID:</strong> {{ invoice.id }} | 
+          <strong>Status:</strong> {{ invoice.status }} | 
+          <strong>Date:</strong> {{ invoice.date }} | 
+          <strong>Total:</strong> {{ invoice.total }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="invoices.length === 0 && !errorMessage && !loading">
+      <p>No invoices found.</p>
+    </div>
+  </div>
+  

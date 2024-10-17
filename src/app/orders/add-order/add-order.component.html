@@ -1,0 +1,36 @@
+<p>add-order works!</p>
+<h3>Add New Order</h3>
+<form (submit)="addOrder()">
+  <div>
+    <label for="clientid">Client ID:</label>
+    <input type="text" [(ngModel)]="orderData.clientid" name="clientid" required />
+  </div>
+
+  <div>
+    <label for="domain">Domain:</label>
+    <input type="text" [(ngModel)]="orderData.domain" name="domain" required />
+  </div>
+
+  <div>
+    <label for="paymentmethod">Payment Method:</label>
+    <select [(ngModel)]="orderData.paymentmethod" name="paymentmethod" required>
+      <option value="paypal">PayPal</option>
+      <option value="creditcard">Credit Card</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="billingcycle">Billing Cycle:</label>
+    <select [(ngModel)]="orderData.billingcycle" name="billingcycle" required>
+      <option value="monthly">Monthly</option>
+      <option value="annually">Annually</option>
+    </select>
+  </div>
+
+  <button type="submit">Add Order</button>
+</form>
+
+<div *ngIf="response">
+  <h4>Response</h4>
+  <pre>{{ response | json }}</pre>
+</div>

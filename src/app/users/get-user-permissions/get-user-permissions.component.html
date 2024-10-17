@@ -1,0 +1,33 @@
+<p>get-user-permissions works!</p>
+<div class="permissions-container">
+    <h2>Get User Permissions</h2>
+  
+    <form [formGroup]="permissionsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="userId">User ID:</label>
+        <input id="userId" formControlName="userId" type="text" />
+        <div *ngIf="permissionsForm.get('userId')?.invalid && permissionsForm.get('userId')?.touched">
+          User ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Permissions' }}
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <ul *ngIf="permissions.length > 0" class="permissions-list">
+      <li *ngFor="let permission of permissions">
+        {{ permission }}
+      </li>
+    </ul>
+  
+    <div *ngIf="!loading && permissions.length === 0 && !errorMessage">
+      <p>No permissions found for this user.</p>
+    </div>
+  </div>
+  

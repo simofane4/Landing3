@@ -1,0 +1,48 @@
+<p>update-pay-method works!</p>
+<div class="update-pay-method-container">
+    <h2>Update Payment Method</h2>
+  
+    <form [formGroup]="updatePayMethodForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="payMethodId">Payment Method ID:</label>
+        <input id="payMethodId" formControlName="payMethodId" type="text" />
+        <div *ngIf="updatePayMethodForm.get('payMethodId')?.invalid && updatePayMethodForm.get('payMethodId')?.touched">
+          Payment Method ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="type">Payment Type:</label>
+        <select id="type" formControlName="type">
+          <option value="creditcard">Credit Card</option>
+          <option value="bankaccount">Bank Account</option>
+        </select>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" type="text" />
+        <div *ngIf="updatePayMethodForm.get('description')?.invalid && updatePayMethodForm.get('description')?.touched">
+          Description is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="active">Active:</label>
+        <input id="active" formControlName="active" type="checkbox" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Payment Method' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

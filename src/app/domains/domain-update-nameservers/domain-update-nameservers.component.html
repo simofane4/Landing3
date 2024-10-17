@@ -1,0 +1,32 @@
+<p>domain-update-nameservers works!</p>
+<div class="nameservers-container">
+    <h2>Update Domain Nameservers</h2>
+  
+    <form [formGroup]="nameserversForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="nameserversForm.get('domain')?.invalid && nameserversForm.get('domain')?.touched">
+          Please enter a valid domain name.
+        </div>
+      </div>
+  
+      <div *ngFor="let ns of ['ns1', 'ns2', 'ns3', 'ns4', 'ns5']; let i = index">
+        <label [for]="'ns' + (i + 1)">Nameserver {{ i + 1 }}:</label>
+        <input [id]="'ns' + (i + 1)" [formControlName]="'ns' + (i + 1)" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Nameservers' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

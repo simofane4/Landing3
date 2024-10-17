@@ -1,0 +1,26 @@
+<div class="routing-summary-container">
+    <h2>Module Routes Summary</h2>
+  
+    <div *ngFor="let module of modulesRoutes">
+      <h3>{{ module.module }} Module</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Route Path</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let route of module.routes">
+            <td>
+                <a href="{{ route.path }}">
+                    {{ route.path }}
+                </a>
+            </td>
+            <td>{{ route.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

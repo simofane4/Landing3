@@ -1,0 +1,56 @@
+<p>update-user works!</p>
+<div class="update-user-container">
+    <h2>Update User</h2>
+  
+    <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="userId">User ID:</label>
+        <input id="userId" formControlName="userId" type="text" />
+        <div *ngIf="updateUserForm.get('userId')?.invalid && updateUserForm.get('userId')?.touched">
+          User ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" type="text" />
+        <div *ngIf="updateUserForm.get('name')?.invalid && updateUserForm.get('name')?.touched">
+          Name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="updateUserForm.get('email')?.invalid && updateUserForm.get('email')?.touched">
+          Please enter a valid email.
+        </div>
+      </div>
+  
+      <div>
+        <label for="role">Role:</label>
+        <select id="role" formControlName="role">
+          <option value="" disabled>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="client">Client</option>
+          <option value="user">User</option>
+        </select>
+        <div *ngIf="updateUserForm.get('role')?.invalid && updateUserForm.get('role')?.touched">
+          Role is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update User' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

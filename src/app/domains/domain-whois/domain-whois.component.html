@@ -1,0 +1,27 @@
+<p>domain-whois works!</p>
+<div class="whois-container">
+    <h2>WHOIS Lookup</h2>
+  
+    <input 
+      type="text" 
+      [(ngModel)]="domainName" 
+      placeholder="Enter domain name" 
+    />
+  
+    <button (click)="getWhoisInfo()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Get WHOIS Info' }}
+    </button>
+  
+    <div *ngIf="whoisInfo" class="whois-info">
+      <h3>WHOIS Information:</h3>
+      <pre>{{ whoisInfo | json }}</pre>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>

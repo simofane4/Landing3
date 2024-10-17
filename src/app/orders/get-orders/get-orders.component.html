@@ -1,0 +1,19 @@
+<p>get-orders works!</p>
+<div *ngIf="orders?.orders?.length > 0; else noData">
+    <h3>Orders</h3>
+    <ul>
+      <li *ngFor="let orders of orders.orders">
+        <strong>{{ orders.id }}:</strong> 
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>
+  
+  <ng-template #noData>
+    <p>No data available.</p>
+  </ng-template>
+  

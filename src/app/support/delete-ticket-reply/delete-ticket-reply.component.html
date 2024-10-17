@@ -1,0 +1,26 @@
+<div class="delete-ticket-reply-container">
+    <h2>Delete Ticket Reply</h2>
+  
+    <form [formGroup]="deleteTicketReplyForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketreplyid">Ticket Reply ID:</label>
+        <input id="ticketreplyid" formControlName="ticketreplyid" type="text" />
+        <div *ngIf="deleteTicketReplyForm.get('ticketreplyid')?.invalid && deleteTicketReplyForm.get('ticketreplyid')?.touched">
+          Ticket Reply ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Ticket Reply' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

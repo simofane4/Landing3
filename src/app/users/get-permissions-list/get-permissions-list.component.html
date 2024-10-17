@@ -1,0 +1,23 @@
+<p>get-permissions-list works!</p>
+<div class="permissions-container">
+    <h2>Permissions List</h2>
+  
+    <button (click)="fetchPermissionsList()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh List' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <ul *ngIf="permissions.length > 0" class="permissions-list">
+      <li *ngFor="let permission of permissions">
+        {{ permission }}
+      </li>
+    </ul>
+  
+    <div *ngIf="!loading && permissions.length === 0 && !errorMessage">
+      <p>No permissions available.</p>
+    </div>
+  </div>
+  

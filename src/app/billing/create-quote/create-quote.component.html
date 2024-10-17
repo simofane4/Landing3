@@ -1,0 +1,57 @@
+<p>create-quote works!</p>
+<div class="create-quote-container">
+    <h2>Create Quote</h2>
+  
+    <form [formGroup]="createQuoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="createQuoteForm.get('clientId')?.invalid && createQuoteForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="subject">Subject:</label>
+        <input id="subject" formControlName="subject" type="text" />
+        <div *ngIf="createQuoteForm.get('subject')?.invalid && createQuoteForm.get('subject')?.touched">
+          Subject is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="dateCreated">Date Created:</label>
+        <input id="dateCreated" formControlName="dateCreated" type="date" />
+      </div>
+  
+      <div>
+        <label for="validUntil">Valid Until:</label>
+        <input id="validUntil" formControlName="validUntil" type="date" />
+      </div>
+  
+      <div formArrayName="items">
+        <h3>Items</h3>
+        <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+          <input placeholder="Description" formControlName="description" />
+          <input placeholder="Quantity" formControlName="quantity" type="number" />
+          <input placeholder="Unit Price" formControlName="unitPrice" type="text" />
+  
+          <button type="button" (click)="removeItem(i)">Remove</button>
+        </div>
+        <button type="button" (click)="addItem()">Add Item</button>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creating...' : 'Create Quote' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

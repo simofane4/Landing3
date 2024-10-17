@@ -1,0 +1,38 @@
+<p>get-emails works!</p>
+<div class="get-emails-container">
+    <h2>Client Emails</h2>
+  
+    <form [formGroup]="getEmailsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="getEmailsForm.get('clientid')?.invalid && getEmailsForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Emails' }}
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clientEmails.length > 0" class="emails-list">
+      <h3>List of Emails</h3>
+      <ul>
+        <li *ngFor="let email of clientEmails">
+          <strong>Email ID:</strong> {{ email.id }} |
+          <strong>Subject:</strong> {{ email.subject }} |
+          <strong>Date:</strong> {{ email.date }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="clientEmails.length === 0 && !errorMessage && !loading">
+      <p>No emails found for this client.</p>
+    </div>
+  </div>
+  

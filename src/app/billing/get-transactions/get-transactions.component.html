@@ -1,0 +1,29 @@
+<div class="get-transactions-container">
+    <h2>Transactions List</h2>
+  
+    <button (click)="fetchTransactions()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Transactions' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="transactions.length > 0" class="transactions-list">
+      <h3>Transactions</h3>
+      <ul>
+        <li *ngFor="let transaction of transactions">
+          <strong>ID:</strong> {{ transaction.id }} |
+          <strong>Date:</strong> {{ transaction.date }} |
+          <strong>Amount In:</strong> {{ transaction.amountin }} |
+          <strong>Amount Out:</strong> {{ transaction.amountout }} |
+          <strong>Description:</strong> {{ transaction.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="transactions.length === 0 && !errorMessage && !loading">
+      <p>No transactions found.</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,29 @@
+<p>get-client-groups works!</p>
+<div class="get-client-groups-container">
+    <h2>Client Groups</h2>
+  
+    <button (click)="fetchClientGroups()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Client Groups' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clientGroups.length > 0" class="groups-list">
+      <h3>List of Client Groups</h3>
+      <ul>
+        <li *ngFor="let group of clientGroups">
+          <strong>Group Name:</strong> {{ group.name }} |
+          <strong>Group ID:</strong> {{ group.id }} |
+          <strong>Discount Rate:</strong> {{ group.discountrate }} |
+          <strong>Credit Limit:</strong> {{ group.creditlimit }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="clientGroups.length === 0 && !errorMessage && !loading">
+      <p>No client groups found.</p>
+    </div>
+  </div>
+  

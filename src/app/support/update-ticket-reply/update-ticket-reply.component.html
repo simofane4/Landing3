@@ -1,0 +1,34 @@
+<div class="update-ticket-reply-container">
+    <h2>Update Ticket Reply</h2>
+  
+    <form [formGroup]="updateTicketReplyForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketreplyid">Ticket Reply ID:</label>
+        <input id="ticketreplyid" formControlName="ticketreplyid" type="text" />
+        <div *ngIf="updateTicketReplyForm.get('ticketreplyid')?.invalid && updateTicketReplyForm.get('ticketreplyid')?.touched">
+          Ticket Reply ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message"></textarea>
+        <div *ngIf="updateTicketReplyForm.get('message')?.invalid && updateTicketReplyForm.get('message')?.touched">
+          Message is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Reply' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

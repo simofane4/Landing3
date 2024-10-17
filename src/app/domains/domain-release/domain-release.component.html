@@ -1,0 +1,39 @@
+<p>domain-release works!</p>
+<div class="release-container">
+    <h2>Release Domain</h2>
+  
+    <form [formGroup]="releaseForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="releaseForm.get('domain')?.invalid && releaseForm.get('domain')?.touched">
+          Please enter a valid domain name.
+        </div>
+      </div>
+  
+      <div>
+        <label for="newTag">New Tag:</label>
+        <input id="newTag" formControlName="newTag" type="text" />
+        <div *ngIf="releaseForm.get('newTag')?.invalid && releaseForm.get('newTag')?.touched">
+          Please enter a valid new tag.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Releasing...' : 'Release Domain' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>
+  

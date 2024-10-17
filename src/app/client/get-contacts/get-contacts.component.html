@@ -1,0 +1,40 @@
+<p>get-contacts works!</p>
+<div class="get-contacts-container">
+    <h2>Client Contacts</h2>
+  
+    <form [formGroup]="getContactsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="getContactsForm.get('clientid')?.invalid && getContactsForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Contacts' }}
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clientContacts.length > 0" class="contacts-list">
+      <h3>List of Contacts</h3>
+      <ul>
+        <li *ngFor="let contact of clientContacts">
+          <strong>Contact ID:</strong> {{ contact.id }} |
+          <strong>Name:</strong> {{ contact.firstname }} {{ contact.lastname }} |
+          <strong>Email:</strong> {{ contact.email }} |
+          <strong>Phone:</strong> {{ contact.phonenumber }} |
+          <strong>Company:</strong> {{ contact.companyname }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="clientContacts.length === 0 && !errorMessage && !loading">
+      <p>No contacts found for this client.</p>
+    </div>
+  </div>
+  

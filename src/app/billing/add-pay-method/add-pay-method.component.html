@@ -1,0 +1,57 @@
+<p>add-pay-method works!</p>
+<div class="add-pay-method-container">
+    <h2>Add Payment Method</h2>
+  
+    <form [formGroup]="addPayMethodForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="addPayMethodForm.get('clientId')?.invalid && addPayMethodForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="type">Payment Method Type:</label>
+        <select id="type" formControlName="type">
+          <option value="" disabled>Select Payment Method</option>
+          <option value="creditcard">Credit Card</option>
+          <option value="bankaccount">Bank Account</option>
+        </select>
+        <div *ngIf="addPayMethodForm.get('type')?.invalid && addPayMethodForm.get('type')?.touched">
+          Payment method type is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" type="text" />
+        <div *ngIf="addPayMethodForm.get('description')?.invalid && addPayMethodForm.get('description')?.touched">
+          Description is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="creditCardToken">Credit Card Token (optional):</label>
+        <input id="creditCardToken" formControlName="creditCardToken" type="text" />
+      </div>
+  
+      <div>
+        <label for="bankAccountToken">Bank Account Token (optional):</label>
+        <input id="bankAccountToken" formControlName="bankAccountToken" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Payment Method' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

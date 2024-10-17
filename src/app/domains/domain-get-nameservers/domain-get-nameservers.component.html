@@ -1,0 +1,30 @@
+<p>domain-get-nameservers works!</p>
+
+<div class="nameservers-container">
+    <h2>Get Domain Nameservers</h2>
+  
+    <input 
+      type="text" 
+      [(ngModel)]="domainName" 
+      placeholder="Enter domain name" 
+    />
+  
+    <button (click)="getNameservers()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Get Nameservers' }}
+    </button>
+  
+    <div *ngIf="nameservers && nameservers.length > 0" class="nameservers-list">
+      <h3>Nameservers:</h3>
+      <ul>
+        <li *ngFor="let ns of nameservers">{{ ns }}</li>
+      </ul>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>

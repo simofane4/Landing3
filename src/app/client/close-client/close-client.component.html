@@ -1,0 +1,27 @@
+<p>close-client works!</p>
+<div class="close-client-container">
+    <h2>Close Client</h2>
+  
+    <form [formGroup]="closeClientForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="closeClientForm.get('clientid')?.invalid && closeClientForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Closing...' : 'Close Client' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,59 @@
+<div class="open-ticket-container">
+    <h2>Open Support Ticket</h2>
+  
+    <form [formGroup]="openTicketForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="openTicketForm.get('clientid')?.invalid && openTicketForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="departmentid">Department ID:</label>
+        <input id="departmentid" formControlName="departmentid" type="text" />
+        <div *ngIf="openTicketForm.get('departmentid')?.invalid && openTicketForm.get('departmentid')?.touched">
+          Department ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="subject">Subject:</label>
+        <input id="subject" formControlName="subject" type="text" />
+        <div *ngIf="openTicketForm.get('subject')?.invalid && openTicketForm.get('subject')?.touched">
+          Subject is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message"></textarea>
+        <div *ngIf="openTicketForm.get('message')?.invalid && openTicketForm.get('message')?.touched">
+          Message is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="priority">Priority:</label>
+        <select id="priority" formControlName="priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Opening...' : 'Open Ticket' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

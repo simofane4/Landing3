@@ -1,0 +1,27 @@
+<p>delete-ticket works!</p>
+<div class="delete-ticket-container">
+    <h2>Delete Ticket</h2>
+  
+    <form [formGroup]="deleteTicketForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketid">Ticket ID:</label>
+        <input id="ticketid" formControlName="ticketid" type="text" />
+        <div *ngIf="deleteTicketForm.get('ticketid')?.invalid && deleteTicketForm.get('ticketid')?.touched">
+          Ticket ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Ticket' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

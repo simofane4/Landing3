@@ -1,0 +1,104 @@
+<p>add-client works!</p>
+<div class="add-client-container">
+    <h2>Add New Client</h2>
+  
+    <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="firstname">First Name:</label>
+        <input id="firstname" formControlName="firstname" type="text" />
+        <div *ngIf="addClientForm.get('firstname')?.invalid && addClientForm.get('firstname')?.touched">
+          First Name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="lastname">Last Name:</label>
+        <input id="lastname" formControlName="lastname" type="text" />
+        <div *ngIf="addClientForm.get('lastname')?.invalid && addClientForm.get('lastname')?.touched">
+          Last Name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="addClientForm.get('email')?.invalid && addClientForm.get('email')?.touched">
+          A valid email is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="address1">Address:</label>
+        <input id="address1" formControlName="address1" type="text" />
+        <div *ngIf="addClientForm.get('address1')?.invalid && addClientForm.get('address1')?.touched">
+          Address is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="city">City:</label>
+        <input id="city" formControlName="city" type="text" />
+        <div *ngIf="addClientForm.get('city')?.invalid && addClientForm.get('city')?.touched">
+          City is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="state">State:</label>
+        <input id="state" formControlName="state" type="text" />
+        <div *ngIf="addClientForm.get('state')?.invalid && addClientForm.get('state')?.touched">
+          State is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="postcode">Postcode:</label>
+        <input id="postcode" formControlName="postcode" type="text" />
+        <div *ngIf="addClientForm.get('postcode')?.invalid && addClientForm.get('postcode')?.touched">
+          Postcode is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="country">Country:</label>
+        <input id="country" formControlName="country" type="text" />
+        <div *ngIf="addClientForm.get('country')?.invalid && addClientForm.get('country')?.touched">
+          Country is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="phonenumber">Phone Number:</label>
+        <input id="phonenumber" formControlName="phonenumber" type="text" />
+        <div *ngIf="addClientForm.get('phonenumber')?.invalid && addClientForm.get('phonenumber')?.touched">
+          Phone number is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="password2">Password:</label>
+        <input id="password2" formControlName="password2" type="password" />
+        <div *ngIf="addClientForm.get('password2')?.invalid && addClientForm.get('password2')?.touched">
+          Password is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="companyname">Company Name (Optional):</label>
+        <input id="companyname" formControlName="companyname" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Client' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

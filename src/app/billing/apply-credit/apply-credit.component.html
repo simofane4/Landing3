@@ -1,0 +1,43 @@
+<p>apply-credit works!</p>
+<div class="apply-credit-container">
+    <h2>Apply Credit to Invoice</h2>
+  
+    <form [formGroup]="applyCreditForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="invoiceId">Invoice ID:</label>
+        <input id="invoiceId" formControlName="invoiceId" type="text" />
+        <div *ngIf="applyCreditForm.get('invoiceId')?.invalid && applyCreditForm.get('invoiceId')?.touched">
+          Invoice ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="applyCreditForm.get('clientId')?.invalid && applyCreditForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amount">Amount:</label>
+        <input id="amount" formControlName="amount" type="text" />
+        <div *ngIf="applyCreditForm.get('amount')?.invalid && applyCreditForm.get('amount')?.touched">
+          Please enter a valid amount.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Applying...' : 'Apply Credit' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

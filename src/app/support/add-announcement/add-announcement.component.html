@@ -1,0 +1,40 @@
+<p>add-announcement works!</p>
+<div class="add-announcement-container">
+    <h2>Add New Announcement</h2>
+  
+    <form [formGroup]="addAnnouncementForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title:</label>
+        <input id="title" formControlName="title" type="text" />
+        <div *ngIf="addAnnouncementForm.get('title')?.invalid && addAnnouncementForm.get('title')?.touched">
+          Title is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="announcement">Announcement:</label>
+        <textarea id="announcement" formControlName="announcement"></textarea>
+        <div *ngIf="addAnnouncementForm.get('announcement')?.invalid && addAnnouncementForm.get('announcement')?.touched">
+          Announcement content is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="published">Publish Immediately:</label>
+        <input id="published" formControlName="published" type="checkbox" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Announcement' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

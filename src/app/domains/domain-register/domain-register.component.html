@@ -1,0 +1,56 @@
+<p>domain-register works!</p>
+<div class="register-container">
+    <h2>Register a Domain</h2>
+  
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="registerForm.get('domain')?.invalid && registerForm.get('domain')?.touched">
+          Please enter a valid domain name.
+        </div>
+      </div>
+  
+      <div>
+        <label for="regperiod">Registration Period (Years):</label>
+        <input id="regperiod" formControlName="regperiod" type="number" min="1" />
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="dnsManagement" />
+          DNS Management
+        </label>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="emailForwarding" />
+          Email Forwarding
+        </label>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="idProtection" />
+          ID Protection
+        </label>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Registering...' : 'Register Domain' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>

@@ -1,0 +1,48 @@
+<p>create-client-invite works!</p>
+<div class="invite-container">
+    <h2>Create Client Invite</h2>
+  
+    <form [formGroup]="inviteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="inviteForm.get('email')?.invalid && inviteForm.get('email')?.touched">
+          Please enter a valid email.
+        </div>
+      </div>
+  
+      <div>
+        <label for="firstName">First Name:</label>
+        <input id="firstName" formControlName="firstName" type="text" />
+        <div *ngIf="inviteForm.get('firstName')?.invalid && inviteForm.get('firstName')?.touched">
+          First name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" formControlName="lastName" type="text" />
+        <div *ngIf="inviteForm.get('lastName')?.invalid && inviteForm.get('lastName')?.touched">
+          Last name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="customMessage">Custom Message:</label>
+        <textarea id="customMessage" formControlName="customMessage"></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Sending...' : 'Send Invite' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

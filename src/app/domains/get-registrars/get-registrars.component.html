@@ -1,0 +1,21 @@
+<p>get-registrars works!</p>
+<div class="registrars-container">
+    <h2>Available Registrars</h2>
+  
+    <button (click)="fetchRegistrars()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh List' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <ul *ngIf="registrars.length > 0" class="registrars-list">
+      <li *ngFor="let registrar of registrars">{{ registrar }}</li>
+    </ul>
+  
+    <div *ngIf="!loading && registrars.length === 0 && !errorMessage">
+      <p>No registrars found.</p>
+    </div>
+  </div>
+  

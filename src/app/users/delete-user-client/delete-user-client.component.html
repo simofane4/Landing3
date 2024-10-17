@@ -1,0 +1,26 @@
+<div class="delete-container">
+    <h2>Delete User/Client</h2>
+  
+    <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="userId">User/Client ID:</label>
+        <input id="userId" formControlName="userId" type="text" />
+        <div *ngIf="deleteForm.get('userId')?.invalid && deleteForm.get('userId')?.touched">
+          User/Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete User/Client' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

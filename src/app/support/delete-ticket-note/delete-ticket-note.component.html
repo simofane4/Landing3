@@ -1,0 +1,26 @@
+<div class="delete-ticket-note-container">
+    <h2>Delete Ticket Note</h2>
+  
+    <form [formGroup]="deleteTicketNoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketnoteid">Ticket Note ID:</label>
+        <input id="ticketnoteid" formControlName="ticketnoteid" type="text" />
+        <div *ngIf="deleteTicketNoteForm.get('ticketnoteid')?.invalid && deleteTicketNoteForm.get('ticketnoteid')?.touched">
+          Ticket Note ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Ticket Note' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

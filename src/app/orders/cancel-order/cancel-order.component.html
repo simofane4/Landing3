@@ -1,0 +1,15 @@
+<p>cancel-order works!</p>
+<h3>Cancel Order</h3> 
+<form (submit)="cancelOrder()"> <!-- L-form bach nqaydu order ID -->
+  <div>
+    <label for="orderId">Order ID:</label>
+    <input type="text" [(ngModel)]="orderId" name="orderId" required /> <!-- Input ID dyal order -->
+  </div>
+  <button type="submit">Cancel Order</button> <!-- Button bach n-sift l-request -->
+</form>
+
+<div *ngIf="response"> <!-- Ila kan response, affichiwha -->
+  <h4>Response</h4>
+  <pre>{{ response | json }}</pre> <!-- Affichage dyal JSON response -->
+</div>
+

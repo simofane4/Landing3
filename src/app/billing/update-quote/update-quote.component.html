@@ -1,0 +1,54 @@
+<div class="update-quote-container">
+    <h2>Update Quote</h2>
+  
+    <form [formGroup]="updateQuoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="quoteId">Quote ID:</label>
+        <input id="quoteId" formControlName="quoteId" type="text" />
+        <div *ngIf="updateQuoteForm.get('quoteId')?.invalid && updateQuoteForm.get('quoteId')?.touched">
+          Quote ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="subject">Subject:</label>
+        <input id="subject" formControlName="subject" type="text" />
+        <div *ngIf="updateQuoteForm.get('subject')?.invalid && updateQuoteForm.get('subject')?.touched">
+          Subject is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="validUntil">Valid Until:</label>
+        <input id="validUntil" formControlName="validUntil" type="date" />
+      </div>
+  
+      <div>
+        <label for="stage">Stage:</label>
+        <select id="stage" formControlName="stage">
+          <option value="Draft">Draft</option>
+          <option value="Delivered">Delivered</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Lost">Lost</option>
+        </select>
+      </div>
+  
+      <div>
+        <label for="notes">Notes (Optional):</label>
+        <textarea id="notes" formControlName="notes" rows="3"></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Quote' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

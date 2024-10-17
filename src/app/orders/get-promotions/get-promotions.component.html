@@ -1,0 +1,16 @@
+<p>get-promotions works!</p>
+<div *ngIf="promotions?.length > 0; else noPromotions">
+    <h3>Available Promotions</h3>
+    <ul>
+      <li *ngFor="let promotion of promotions">
+        <strong>{{ promotion.name }}</strong> - {{ promotion.description }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>
+  <ng-template #noPromotions>
+    <p>No promotions found.</p>
+  </ng-template>

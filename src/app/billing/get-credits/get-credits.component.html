@@ -1,0 +1,30 @@
+<p>get-credits works!</p>
+<div class="get-credits-container">
+    <h2>Retrieve Client Credits</h2>
+  
+    <div class="form-group">
+      <label for="clientId">Client ID:</label>
+      <input #clientIdInput id="clientId" type="text" />
+      <button (click)="getCredits(clientIdInput.value)" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Credits' }}
+      </button>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="credits.length > 0" class="credits-list">
+      <h3>Credits</h3>
+      <ul>
+        <li *ngFor="let credit of credits">
+          <strong>Date:</strong> {{ credit.date }} | <strong>Amount:</strong> {{ credit.amount }} | <strong>Description:</strong> {{ credit.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="credits.length === 0 && !errorMessage && !loading">
+      <p>No credits found for this client.</p>
+    </div>
+  </div>
+  

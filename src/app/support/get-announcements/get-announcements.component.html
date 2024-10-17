@@ -1,0 +1,26 @@
+<div class="get-announcements-container">
+    <h2>Announcements</h2>
+  
+    <div *ngIf="loading">
+      <p>Loading announcements...</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="announcements.length > 0" class="announcements-list">
+      <ul>
+        <li *ngFor="let announcement of announcements">
+          <h3>{{ announcement.title }}</h3>
+          <p>{{ announcement.announcement }}</p>
+          <small><em>{{ announcement.date }}</em></small>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="announcements.length === 0 && !loading && !errorMessage">
+      <p>No announcements available.</p>
+    </div>
+  </div>
+  

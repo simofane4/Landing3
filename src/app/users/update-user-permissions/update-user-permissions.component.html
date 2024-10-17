@@ -1,0 +1,38 @@
+<div class="permissions-container">
+    <h2>Update User Permissions</h2>
+  
+    <form [formGroup]="permissionsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="userId">User ID:</label>
+        <input id="userId" formControlName="userId" type="text" />
+        <div *ngIf="permissionsForm.get('userId')?.invalid && permissionsForm.get('userId')?.touched">
+          User ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label>Select Permissions:</label>
+        <div *ngFor="let permission of permissions">
+          <input
+            type="checkbox"
+            [value]="permission"
+            (change)="onPermissionChange($event)"
+          />
+          {{ permission }}
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Permissions' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,17 @@
+<p>gen-invoices works!</p>
+<div class="gen-invoices-container">
+    <h2>Generate Invoices</h2>
+  
+    <button (click)="onGenerateInvoices()" [disabled]="loading">
+      {{ loading ? 'Generating...' : 'Generate Invoices' }}
+    </button>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

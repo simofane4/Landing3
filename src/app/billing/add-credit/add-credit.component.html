@@ -1,0 +1,43 @@
+<p>add-credit works!</p>
+<div class="add-credit-container">
+    <h2>Add Credit</h2>
+  
+    <form [formGroup]="addCreditForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="addCreditForm.get('clientId')?.invalid && addCreditForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amount">Amount:</label>
+        <input id="amount" formControlName="amount" type="text" />
+        <div *ngIf="addCreditForm.get('amount')?.invalid && addCreditForm.get('amount')?.touched">
+          Please enter a valid amount.
+        </div>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" type="text" />
+        <div *ngIf="addCreditForm.get('description')?.invalid && addCreditForm.get('description')?.touched">
+          Description is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Credit' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

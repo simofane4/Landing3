@@ -1,0 +1,14 @@
+<p>delete-order works!</p>
+<h3>Delete Order</h3> 
+<form (submit)="deleteOrder()"> <!-- Form bach nqaydu l-order ID -->
+  <div>
+    <label for="orderId">Order ID:</label>
+    <input type="text" [(ngModel)]="orderId" name="orderId" required /> <!-- Input dyal ID -->
+  </div>
+  <button type="submit">Delete Order</button> <!-- Button bach nsift l-request -->
+</form>
+
+<div *ngIf="response"> <!-- Ila kan response, n-affichiwha -->
+  <h4>Response</h4>
+  <pre>{{ response | json }}</pre> <!-- JSON format dyal l-response -->
+</div>

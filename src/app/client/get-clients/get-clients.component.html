@@ -1,0 +1,29 @@
+<p>get-clients works!</p>
+<div class="get-clients-container">
+    <h2>Clients List</h2>
+  
+    <button (click)="fetchClients()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Clients' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clients.length > 0" class="clients-list">
+      <h3>List of Clients</h3>
+      <ul>
+        <li *ngFor="let client of clients">
+          <strong>Client ID:</strong> {{ client.id }} |
+          <strong>Name:</strong> {{ client.firstname }} {{ client.lastname }} |
+          <strong>Email:</strong> {{ client.email }} |
+          <strong>Status:</strong> {{ client.status }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="clients.length === 0 && !errorMessage && !loading">
+      <p>No clients found.</p>
+    </div>
+  </div>
+  

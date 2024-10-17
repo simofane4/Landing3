@@ -1,0 +1,50 @@
+<p>update-client-domain works!</p>
+<div class="update-container">
+    <h2>Update Client Domain</h2>
+  
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="updateForm.get('domain')?.invalid && updateForm.get('domain')?.touched">
+          Please enter a valid domain name.
+        </div>
+      </div>
+  
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="number" />
+        <div *ngIf="updateForm.get('clientid')?.invalid && updateForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="regperiod">Registration Period (Years):</label>
+        <input id="regperiod" formControlName="regperiod" type="number" min="1" />
+      </div>
+  
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" formControlName="status">
+          <option value="Active">Active</option>
+          <option value="Pending">Pending</option>
+          <option value="Cancelled">Cancelled</option>
+          <option value="Expired">Expired</option>
+        </select>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Client Domain' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

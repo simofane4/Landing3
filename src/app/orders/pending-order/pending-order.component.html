@@ -1,0 +1,14 @@
+<p>pending-order works!</p>
+<h3>Pending Orders</h3>
+
+<ul *ngIf="pendingOrders.length > 0; else noOrders">
+  <li *ngFor="let order of pendingOrders">
+    <strong>Order ID:</strong> {{ order.id }} <br />
+    <strong>Client:</strong> {{ order.client }} <br />
+    <strong>Status:</strong> {{ order.status }}
+  </li>
+</ul>
+
+<ng-template #noOrders>
+  <p>No pending orders found.</p> <!-- Message ila ma kainch orders -->
+</ng-template>

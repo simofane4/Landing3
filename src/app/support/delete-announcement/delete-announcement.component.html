@@ -1,0 +1,26 @@
+<div class="delete-announcement-container">
+    <h2>Delete Announcement</h2>
+  
+    <form [formGroup]="deleteAnnouncementForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="announcementid">Announcement ID:</label>
+        <input id="announcementid" formControlName="announcementid" type="text" />
+        <div *ngIf="deleteAnnouncementForm.get('announcementid')?.invalid && deleteAnnouncementForm.get('announcementid')?.touched">
+          Announcement ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Announcement' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

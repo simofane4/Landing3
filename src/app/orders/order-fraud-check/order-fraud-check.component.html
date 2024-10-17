@@ -1,0 +1,15 @@
+<p>order-fraud-check works!</p>
+<h3>Order Fraud Check</h3>
+<form (submit)="checkFraud()"> <!-- Form bach nqaydu ID -->
+  <div>
+    <label for="orderId">Order ID:</label>
+    <input type="text" [(ngModel)]="orderId" name="orderId" required /> <!-- Input dyal ID -->
+  </div>
+  <button type="submit">Check Fraud</button> <!-- Button bash nsift l-request -->
+</form>
+
+<div *ngIf="response"> <!-- Ila kan l-response, affichiwha -->
+  <h4>Response</h4>
+  <pre>{{ response | json }}</pre> <!-- Affichage dyal JSON response -->
+</div>
+

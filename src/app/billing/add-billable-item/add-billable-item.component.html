@@ -1,0 +1,61 @@
+<p>add-billable-item works!</p>
+<div class="add-billable-item-container">
+    <h2>Add Billable Item</h2>
+  
+    <form [formGroup]="addBillableItemForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="addBillableItemForm.get('clientId')?.invalid && addBillableItemForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" type="text" />
+        <div *ngIf="addBillableItemForm.get('description')?.invalid && addBillableItemForm.get('description')?.touched">
+          Description is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="amount">Amount:</label>
+        <input id="amount" formControlName="amount" type="text" />
+        <div *ngIf="addBillableItemForm.get('amount')?.invalid && addBillableItemForm.get('amount')?.touched">
+          Please enter a valid amount.
+        </div>
+      </div>
+  
+      <div>
+        <label for="invoiceAction">Invoice Action:</label>
+        <select id="invoiceAction" formControlName="invoiceAction">
+          <option value="" disabled>Select an Action</option>
+          <option value="no">No Invoice</option>
+          <option value="nextcron">Invoice on Next Cron</option>
+          <option value="due">Invoice Due Now</option>
+        </select>
+        <div *ngIf="addBillableItemForm.get('invoiceAction')?.invalid && addBillableItemForm.get('invoiceAction')?.touched">
+          Invoice Action is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="recur">Recurring Interval (Days):</label>
+        <input id="recur" formControlName="recur" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Billable Item' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

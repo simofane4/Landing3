@@ -1,0 +1,39 @@
+<p>get-clients-addons works!</p>
+<div class="get-client-addons-container">
+    <h2>Client Addons</h2>
+  
+    <form [formGroup]="getClientAddonsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="getClientAddonsForm.get('clientid')?.invalid && getClientAddonsForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Addons' }}
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clientAddons.length > 0" class="addons-list">
+      <h3>List of Addons</h3>
+      <ul>
+        <li *ngFor="let addon of clientAddons">
+          <strong>Addon ID:</strong> {{ addon.id }} |
+          <strong>Name:</strong> {{ addon.name }} |
+          <strong>Product ID:</strong> {{ addon.productid }} |
+          <strong>Status:</strong> {{ addon.status }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="clientAddons.length === 0 && !errorMessage && !loading">
+      <p>No addons found for this client.</p>
+    </div>
+  </div>
+  

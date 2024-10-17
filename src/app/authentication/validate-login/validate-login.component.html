@@ -1,0 +1,35 @@
+<p>validate-login works!</p>
+<div class="validate-login-container">
+    <h2>Validate Login</h2>
+  
+    <form [formGroup]="validateLoginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="username">Username:</label>
+        <input id="username" formControlName="username" type="text" />
+        <div *ngIf="validateLoginForm.get('username')?.invalid && validateLoginForm.get('username')?.touched">
+          Username is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input id="password" formControlName="password" type="password" />
+        <div *ngIf="validateLoginForm.get('password')?.invalid && validateLoginForm.get('password')?.touched">
+          Password is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Validating...' : 'Validate Login' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

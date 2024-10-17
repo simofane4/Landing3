@@ -1,0 +1,32 @@
+<p>get-pay-methods works!</p>
+<div class="get-pay-methods-container">
+    <h2>Retrieve Payment Methods</h2>
+  
+    <div class="form-group">
+      <label for="clientId">Client ID:</label>
+      <input #clientIdInput id="clientId" type="text" />
+      <button (click)="getPayMethods(clientIdInput.value)" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Payment Methods' }}
+      </button>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="payMethods.length > 0" class="pay-methods-list">
+      <h3>Payment Methods</h3>
+      <ul>
+        <li *ngFor="let method of payMethods">
+          <strong>ID:</strong> {{ method.id }} |
+          <strong>Type:</strong> {{ method.type }} |
+          <strong>Description:</strong> {{ method.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="payMethods.length === 0 && !errorMessage && !loading">
+      <p>No payment methods found for this client.</p>
+    </div>
+  </div>
+  

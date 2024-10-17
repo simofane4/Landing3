@@ -1,0 +1,27 @@
+<p>delete-quote works!</p>
+<div class="delete-quote-container">
+    <h2>Delete Quote</h2>
+  
+    <form [formGroup]="deleteQuoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="quoteId">Quote ID:</label>
+        <input id="quoteId" formControlName="quoteId" type="text" />
+        <div *ngIf="deleteQuoteForm.get('quoteId')?.invalid && deleteQuoteForm.get('quoteId')?.touched">
+          Quote ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Quote' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

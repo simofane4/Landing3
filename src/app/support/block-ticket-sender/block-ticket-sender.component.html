@@ -1,0 +1,31 @@
+<div class="block-ticket-sender-container">
+    <h2>Block Ticket Sender</h2>
+  
+    <form [formGroup]="blockTicketSenderForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Sender's Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="blockTicketSenderForm.get('email')?.invalid && blockTicketSenderForm.get('email')?.touched">
+          A valid email is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="reason">Reason for Blocking (Optional):</label>
+        <textarea id="reason" formControlName="reason"></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Blocking...' : 'Block Sender' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

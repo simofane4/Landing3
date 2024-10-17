@@ -1,0 +1,40 @@
+<p>get-clients-domains works!</p>
+<div class="get-client-domains-container">
+    <h2>Client Domains</h2>
+  
+    <form [formGroup]="getClientDomainsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="getClientDomainsForm.get('clientid')?.invalid && getClientDomainsForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Domains' }}
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clientDomains.length > 0" class="domains-list">
+      <h3>List of Domains</h3>
+      <ul>
+        <li *ngFor="let domain of clientDomains">
+          <strong>Domain ID:</strong> {{ domain.id }} |
+          <strong>Domain Name:</strong> {{ domain.domain }} |
+          <strong>Status:</strong> {{ domain.status }} |
+          <strong>Registration Date:</strong> {{ domain.registrationdate }} |
+          <strong>Next Due Date:</strong> {{ domain.nextduedate }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="clientDomains.length === 0 && !errorMessage && !loading">
+      <p>No domains found for this client.</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,35 @@
+<p>add-ticket-note works!</p>
+<div class="add-ticket-note-container">
+    <h2>Add Ticket Note</h2>
+  
+    <form [formGroup]="addTicketNoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketid">Ticket ID:</label>
+        <input id="ticketid" formControlName="ticketid" type="text" />
+        <div *ngIf="addTicketNoteForm.get('ticketid')?.invalid && addTicketNoteForm.get('ticketid')?.touched">
+          Ticket ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="note">Note:</label>
+        <textarea id="note" formControlName="note"></textarea>
+        <div *ngIf="addTicketNoteForm.get('note')?.invalid && addTicketNoteForm.get('note')?.touched">
+          Note is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Note' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

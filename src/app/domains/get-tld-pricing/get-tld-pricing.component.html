@@ -1,0 +1,36 @@
+<p>get-tld-pricing works!</p>
+<div class="tld-pricing-container">
+    <h2>TLD Pricing</h2>
+  
+    <button (click)="fetchTldPricing()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Pricing' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <table *ngIf="tldPricing.length > 0" class="tld-pricing-table">
+      <thead>
+        <tr>
+          <th>TLD</th>
+          <th>Registration</th>
+          <th>Renewal</th>
+          <th>Transfer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tld of tldPricing">
+          <td>{{ tld.tld }}</td>
+          <td>{{ tld.registration | currency }}</td>
+          <td>{{ tld.renew | currency }}</td>
+          <td>{{ tld.transfer | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="!loading && tldPricing.length === 0 && !errorMessage">
+      <p>No TLD pricing available.</p>
+    </div>
+  </div>
+  

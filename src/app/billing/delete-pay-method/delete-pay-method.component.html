@@ -1,0 +1,27 @@
+<p>delete-pay-method works!</p>
+<div class="delete-pay-method-container">
+    <h2>Delete Payment Method</h2>
+  
+    <form [formGroup]="deletePayMethodForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="payMethodId">Payment Method ID:</label>
+        <input id="payMethodId" formControlName="payMethodId" type="text" />
+        <div *ngIf="deletePayMethodForm.get('payMethodId')?.invalid && deletePayMethodForm.get('payMethodId')?.touched">
+          Payment Method ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Deleting...' : 'Delete Payment Method' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

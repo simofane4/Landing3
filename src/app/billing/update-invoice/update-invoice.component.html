@@ -1,0 +1,49 @@
+<p>update-invoice works!</p>
+<div class="update-invoice-container">
+    <h2>Update Invoice</h2>
+  
+    <form [formGroup]="updateInvoiceForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="invoiceId">Invoice ID:</label>
+        <input id="invoiceId" formControlName="invoiceId" type="text" />
+        <div *ngIf="updateInvoiceForm.get('invoiceId')?.invalid && updateInvoiceForm.get('invoiceId')?.touched">
+          Invoice ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" formControlName="status">
+          <option value="Unpaid">Unpaid</option>
+          <option value="Paid">Paid</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+  
+      <div>
+        <label for="paymentMethod">Payment Method:</label>
+        <input id="paymentMethod" formControlName="paymentMethod" type="text" />
+        <div *ngIf="updateInvoiceForm.get('paymentMethod')?.invalid && updateInvoiceForm.get('paymentMethod')?.touched">
+          Payment Method is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="notes">Notes (Optional):</label>
+        <textarea id="notes" formControlName="notes" rows="3"></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Invoice' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

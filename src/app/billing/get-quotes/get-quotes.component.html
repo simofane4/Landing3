@@ -1,0 +1,29 @@
+<p>get-quotes works!</p>
+<div class="get-quotes-container">
+    <h2>Quotes List</h2>
+  
+    <button (click)="fetchQuotes()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh Quotes' }}
+    </button>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="quotes.length > 0" class="quotes-list">
+      <h3>Quotes</h3>
+      <ul>
+        <li *ngFor="let quote of quotes">
+          <strong>ID:</strong> {{ quote.id }} | 
+          <strong>Subject:</strong> {{ quote.subject }} | 
+          <strong>Date:</strong> {{ quote.datecreated }} | 
+          <strong>Total:</strong> {{ quote.total }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="quotes.length === 0 && !errorMessage && !loading">
+      <p>No quotes found.</p>
+    </div>
+  </div>
+  

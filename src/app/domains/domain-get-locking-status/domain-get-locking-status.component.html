@@ -1,0 +1,26 @@
+<p>domain-get-locking-status works!</p>
+<div class="locking-status-container">
+    <h2>Check Domain Locking Status</h2>
+  
+    <input 
+      type="text" 
+      [(ngModel)]="domainName" 
+      placeholder="Enter domain name" 
+    />
+  
+    <button (click)="getLockingStatus()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Check Status' }}
+    </button>
+  
+    <div *ngIf="lockingStatus">
+      <p>Locking Status: {{ lockingStatus }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>

@@ -1,0 +1,47 @@
+<p>domain-transfer works!</p>
+<div class="transfer-container">
+    <h2>Transfer Domain</h2>
+  
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="transferForm.get('domain')?.invalid && transferForm.get('domain')?.touched">
+          Please enter a valid domain name.
+        </div>
+      </div>
+  
+      <div>
+        <label for="eppCode">EPP Code:</label>
+        <input id="eppCode" formControlName="eppCode" type="text" />
+        <div *ngIf="transferForm.get('eppCode')?.invalid && transferForm.get('eppCode')?.touched">
+          EPP Code is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="regperiod">Registration Period (Years):</label>
+        <input id="regperiod" formControlName="regperiod" type="number" min="1" />
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="idProtection" />
+          Enable ID Protection
+        </label>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Transferring...' : 'Transfer Domain' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

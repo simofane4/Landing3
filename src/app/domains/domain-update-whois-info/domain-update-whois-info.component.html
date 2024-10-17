@@ -1,0 +1,34 @@
+<div class="whois-container">
+    <h2>Update WHOIS Information</h2>
+  
+    <form [formGroup]="whoisForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let field of whoisFields">
+        <label [for]="field">{{ field | titlecase }}:</label>
+        <input [id]="field" [formControlName]="field" type="text" />
+        <div *ngIf="whoisForm.get(field)?.invalid && whoisForm.get(field)?.touched">
+          {{ field | titlecase }} is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="whoisForm.get('domain')?.invalid && whoisForm.get('domain')?.touched">
+          Domain is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update WHOIS Info' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

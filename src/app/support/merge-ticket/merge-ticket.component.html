@@ -1,0 +1,34 @@
+<div class="merge-ticket-container">
+    <h2>Merge Tickets</h2>
+  
+    <form [formGroup]="mergeTicketForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="ticketid">Primary Ticket ID:</label>
+        <input id="ticketid" formControlName="ticketid" type="text" />
+        <div *ngIf="mergeTicketForm.get('ticketid')?.invalid && mergeTicketForm.get('ticketid')?.touched">
+          Primary Ticket ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="mergeticketid">Ticket ID to be Merged:</label>
+        <input id="mergeticketid" formControlName="mergeticketid" type="text" />
+        <div *ngIf="mergeTicketForm.get('mergeticketid')?.invalid && mergeTicketForm.get('mergeticketid')?.touched">
+          Ticket ID to be Merged is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Merging...' : 'Merge Tickets' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

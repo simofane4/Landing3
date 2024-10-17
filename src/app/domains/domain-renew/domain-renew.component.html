@@ -1,0 +1,32 @@
+<p>domain-renew works!</p>
+<div class="renew-container">
+    <h2>Renew Domain</h2>
+  
+    <form [formGroup]="renewForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="domain">Domain:</label>
+        <input id="domain" formControlName="domain" type="text" />
+        <div *ngIf="renewForm.get('domain')?.invalid && renewForm.get('domain')?.touched">
+          Please enter a valid domain name.
+        </div>
+      </div>
+  
+      <div>
+        <label for="regperiod">Renewal Period (Years):</label>
+        <input id="regperiod" formControlName="regperiod" type="number" min="1" />
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Renewing...' : 'Renew Domain' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

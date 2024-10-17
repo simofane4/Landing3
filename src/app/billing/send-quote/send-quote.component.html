@@ -1,0 +1,35 @@
+<p>send-quote works!</p>
+<div class="send-quote-container">
+    <h2>Send Quote</h2>
+  
+    <form [formGroup]="sendQuoteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="quoteId">Quote ID:</label>
+        <input id="quoteId" formControlName="quoteId" type="text" />
+        <div *ngIf="sendQuoteForm.get('quoteId')?.invalid && sendQuoteForm.get('quoteId')?.touched">
+          Quote ID is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Client Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="sendQuoteForm.get('email')?.invalid && sendQuoteForm.get('email')?.touched">
+          Please provide a valid email address.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Sending...' : 'Send Quote' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,27 @@
+<p>create-sso-token works!</p>
+<div class="create-sso-token-container">
+    <h2>Create SSO Token</h2>
+  
+    <form [formGroup]="createSsoTokenForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientId">Client ID:</label>
+        <input id="clientId" formControlName="clientId" type="text" />
+        <div *ngIf="createSsoTokenForm.get('clientId')?.invalid && createSsoTokenForm.get('clientId')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creating...' : 'Create SSO Token' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

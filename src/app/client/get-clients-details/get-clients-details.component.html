@@ -1,0 +1,42 @@
+<div class="get-client-details-container">
+    <h2>Client Details</h2>
+  
+    <form [formGroup]="getClientDetailsForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="clientid">Client ID:</label>
+        <input id="clientid" formControlName="clientid" type="text" />
+        <div *ngIf="getClientDetailsForm.get('clientid')?.invalid && getClientDetailsForm.get('clientid')?.touched">
+          Client ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Get Details' }}
+      </button>
+    </form>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div *ngIf="clientDetails" class="client-details">
+      <h3>Client Information</h3>
+      <p><strong>Client ID:</strong> {{ clientDetails.id }}</p>
+      <p><strong>First Name:</strong> {{ clientDetails.firstname }}</p>
+      <p><strong>Last Name:</strong> {{ clientDetails.lastname }}</p>
+      <p><strong>Email:</strong> {{ clientDetails.email }}</p>
+      <p><strong>Company Name:</strong> {{ clientDetails.companyname }}</p>
+      <p><strong>Phone Number:</strong> {{ clientDetails.phonenumber }}</p>
+      <p><strong>Status:</strong> {{ clientDetails.status }}</p>
+      <p><strong>Address 1:</strong> {{ clientDetails.address1 }}</p>
+      <p><strong>City:</strong> {{ clientDetails.city }}</p>
+      <p><strong>State:</strong> {{ clientDetails.state }}</p>
+      <p><strong>Postcode:</strong> {{ clientDetails.postcode }}</p>
+      <p><strong>Country:</strong> {{ clientDetails.country }}</p>
+    </div>
+  
+    <div *ngIf="!clientDetails && !errorMessage && !loading">
+      <p>No client details found.</p>
+    </div>
+  </div>
+  

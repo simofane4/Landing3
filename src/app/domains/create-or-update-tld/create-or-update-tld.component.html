@@ -1,0 +1,58 @@
+<p>create-or-update-tld works!</p>
+<div class="tld-container">
+    <h2>{{ isUpdate ? 'Update TLD' : 'Create TLD' }}</h2>
+  
+    <form [formGroup]="tldForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="tld">TLD:</label>
+        <input id="tld" formControlName="tld" type="text" />
+        <div *ngIf="tldForm.get('tld')?.invalid && tldForm.get('tld')?.touched">
+          TLD is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="registrar">Registrar:</label>
+        <input id="registrar" formControlName="registrar" type="text" />
+        <div *ngIf="tldForm.get('registrar')?.invalid && tldForm.get('registrar')?.touched">
+          Registrar is required.
+        </div>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="dnsManagement" />
+          DNS Management
+        </label>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="emailForwarding" />
+          Email Forwarding
+        </label>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" formControlName="idProtection" />
+          ID Protection
+        </label>
+      </div>
+  
+      <div>
+        <label for="renewalPrice">Renewal Price:</label>
+        <input id="renewalPrice" formControlName="renewalPrice" type="text" />
+        <div *ngIf="tldForm.get('renewalPrice')?.invalid && tldForm.get('renewalPrice')?.touched">
+          Renewal price is required and must be a valid number.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ isUpdate ? 'Update TLD' : 'Create TLD' }}
+      </button>
+    </form>
+  
+    <p *ngIf="message">{{ message }}</p>
+  </div>
+  

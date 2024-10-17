@@ -1,0 +1,27 @@
+<p>capture-payment works!</p>
+<div class="capture-payment-container">
+    <h2>Capture Payment</h2>
+  
+    <form [formGroup]="capturePaymentForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="invoiceId">Invoice ID:</label>
+        <input id="invoiceId" formControlName="invoiceId" type="text" />
+        <div *ngIf="capturePaymentForm.get('invoiceId')?.invalid && capturePaymentForm.get('invoiceId')?.touched">
+          Invoice ID is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Capturing...' : 'Capture Payment' }}
+      </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success">
+      <p>{{ successMessage }}</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  
