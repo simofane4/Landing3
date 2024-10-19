@@ -14,6 +14,7 @@ import { IndexComponent } from './index/index.component';
 
 import { BloglistComponent } from './bloglist/bloglist.component';
 import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -27,7 +28,9 @@ import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
     CommonModule,
     PagesRoutingModule,
     SharedModule,
+    FormsModule,
     SlickCarouselModule
+
   ]
 })
 export class PagesModule { }

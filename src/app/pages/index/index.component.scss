@@ -1,0 +1,35 @@
+.domain-search {
+    input.domain-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        font-size: 16px;
+        border: 2px solid #007bff;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+    }
+
+    .suggestions-list {
+        margin-top: 15px;
+
+        .list-group-item {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .list-group-item:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    }
+}

@@ -7,16 +7,42 @@
             <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-6">
                     <div>
-                        <h6 class="home-subtitle text-primary mb-4">Awesome</h6>
-                        <h1>We are Startup Creative Landsay Agency</h1>
-                        <p class="text-black-50 fs-17 pt-4">Carefully crafted after analyzing the needs of different
-                            industries and the design achieves a great balance between purpose & presentation.</p>
-                        <div class="text-center subscribe-form mt-5">
-                            <form action="#">
-                                <input type="text" class="control-form" id="inputemail" placeholder="Enter your email">
-                                <button type="submit" class="btn btn-primary">Subscribe</button>
-                            </form>
+                        <h6 class="home-subtitle text-primary mb-4">Domain Search</h6>
+                        <h1>Find Your Perfect Domain</h1>
+                        <p class="text-black-50 fs-17 pt-4">Search for available domain names and explore pricing
+                            options for various TLDs.</p>
+                        
+                        <!-- START Domain Search Bar -->
+                        <div class="text-center domain-search mt-4">
+                            <input type="text" 
+                                   class="form-control domain-input"
+                                   [(ngModel)]="domainName"
+                                   placeholder="Enter domain name" />
+
+                            <!-- Button to trigger domain search -->
+                            <button class="btn btn-primary mt-3" (click)="onSearchDomain()">
+                                Check Domain
+                            </button>
+
+                            <!-- Display domain suggestions -->
+                            <div *ngIf="suggestions.length > 0" class="suggestions-list mt-3">
+                                <ul class="list-group">
+                                    <li *ngFor="let suggestion of suggestions" class="list-group-item">
+                                        <!-- Display the domain name -->
+                                        {{ suggestion.domain }} 
+                                        <!-- Show status or price -->
+                                        <span *ngIf="suggestion.status; else priceTemplate">
+                                            - {{ suggestion.status }}
+                                        </span>
+                                        <!-- Show the price if the status is not present -->
+                                        <ng-template #priceTemplate>
+                                            - {{ suggestion.price }}
+                                        </ng-template>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        <!-- END Domain Search Bar -->
                     </div>
                 </div>
                 <!--end col-->
@@ -31,6 +57,7 @@
     </div>
     <!--end container-->
 </section>
+
 <div class="position-relative">
     <div class="shape overflow-hidden text-white position-absolute">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" style="width: 100%;" height="250" preserveAspectRatio="none"
@@ -47,6 +74,7 @@
     </div>
 </div>
 <!-- END HOME -->
+
 
 <app-features></app-features>
 <app-process></app-process>

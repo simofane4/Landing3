@@ -56,5 +56,17 @@
       color: red;
       font-weight: bold;
     }
+    
   }
   
+  
+  .json-display {
+    background-color: #2b2b2b;
+    color: #a9dc76;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    overflow: auto;
+    max-height: 400px;
+  }

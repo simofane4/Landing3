@@ -57,3 +57,5 @@ curl_close($ch);
 
 
 docker run -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenkins_home jenkins
+docker pull mohamedaitkhmim/barber-api:prod
+docker run -p 8899:8899 --name barber-api mohamedaitkhmim/barber-api:prod

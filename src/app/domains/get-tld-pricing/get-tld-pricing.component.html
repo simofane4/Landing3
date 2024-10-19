@@ -34,3 +34,8 @@
     </div>
   </div>
   
+
+  <div *ngIf="jsonResponse">
+    <h3>Order Statuses JSON</h3>
+    <pre class="json-display">{{ jsonResponse | json }}</pre>
+  </div>

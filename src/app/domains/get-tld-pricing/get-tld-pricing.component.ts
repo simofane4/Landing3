@@ -10,7 +10,7 @@ export class GetTldPricingComponent implements OnInit {
   tldPricing: any[] = []; // Holds the TLD pricing data
   loading: boolean = false; // Loading state indicator
   errorMessage: string = ''; // Error message
-
+  jsonResponse:any[] = [];
   constructor(private domainsService: DomainsService) {}
 
   ngOnInit(): void {
@@ -24,8 +24,10 @@ export class GetTldPricingComponent implements OnInit {
 
     this.domainsService.getTldPricing().subscribe(
       (response) => {
+        this.jsonResponse = response;
         if (response.result === 'success' && response.tldpricing) {
           this.tldPricing = response.tldpricing;
+          
         } else {
           this.errorMessage = 'Failed to retrieve TLD pricing: ' + response.message;
         }
