@@ -8,67 +8,67 @@ import { DomainsService } from 'src/app/domains/domains.service';
 })
 export class IndexComponent {
 
-  domainName: string = '';  // Input domain name
-  suggestions: any[] = [];  // List of domain suggestions
+  domainName: string = '';
+  suggestions: any[] = [];
+  selectedDomain: string = '';  // To store the selected domain
 
   constructor(private domainsService: DomainsService) {}
 
+  // Method to search domain and get suggestions
   onSearchDomain() {
     if (this.domainName.length > 2) {
-      // Call WHOIS check for the domain
       this.domainsService.getWhoisInfo(this.domainName).subscribe((whoisResponse: any) => {
-        console.log('WHOIS Response:', whoisResponse);  // Debugging log
+        console.log('WHOIS Response:', whoisResponse);
 
-        // Clear previous suggestions
         this.suggestions = [];
 
         if (whoisResponse.result !== 'error') {
           const domainStatus = whoisResponse.domainstatus === 'available' ? 'Available' : 'Taken';
 
-          // Add the original domain and its status
-          this.suggestions.push({
-            domain: this.domainName,
-            status: domainStatus
-          });
+          if (domainStatus === 'Available') {
+            this.suggestions.push({
+              domain: this.domainName,
+              status: domainStatus
+            });
+          } else {
+            this.suggestions.push({
+              domain: this.domainName,
+              status: 'Taken',
+              message: `${this.domainName} n'est pas disponible`
+            });
+          }
 
-          // Now fetch TLD pricing and generate suggestions
+          // Fetch TLD pricing and generate suggestions
           this.domainsService.getTldPricing().subscribe((pricingResponse: any) => {
-            console.log('TLD Pricing Response:', pricingResponse);  // Debugging log
+            const tldPricing = pricingResponse.pricing;
+            const currencySuffix = pricingResponse.currency.suffix || 'DH';
 
-            if (pricingResponse.result === 'success') {
-              const tldPricing = pricingResponse.pricing;
-              const currencySuffix = pricingResponse.currency.suffix || 'DH';  // Use DH as default
+            Object.keys(tldPricing).forEach((tld: string) => {
+              const baseDomain = this.domainName.split('.')[0];
+              const suggestion = `${baseDomain}.${tld}`;
+              const registerPrice = tldPricing[tld]?.register?.['1'];
 
-              // Loop through the TLD pricing to generate suggestions
-              Object.keys(tldPricing).forEach((tld: string) => {
-                if (!this.domainName.endsWith(tld)) {
-                  const baseDomain = this.domainName.split('.')[0];  // Get base domain (e.g., 'example' from 'example.com')
-                  const suggestion = `${baseDomain}.${tld}`;  // Combine with each TLD
-
-                  const registerPrice = tldPricing[tld]?.register?.['1'];  // Get the 1-year registration price
-
-                  // Add the suggestion to the list if pricing exists
-                  if (registerPrice) {
-                    this.suggestions.push({
-                      domain: suggestion,
-                      price: `${registerPrice} ${currencySuffix}`
-                    });
-                  }
-                }
-              });
-
-              // Log the final suggestions array
-              console.log('Final Suggestions (With Pricing):', this.suggestions);
-            }
-          }, (error) => {
-            console.error('Error fetching TLD pricing:', error);
+              if (registerPrice) {
+                this.suggestions.push({
+                  domain: suggestion,
+                  price: `${registerPrice} ${currencySuffix}`
+                });
+              }
+            });
           });
         }
-      }, (error) => {
-        console.error('Error fetching WHOIS info:', error);
       });
     } else {
-      alert('Please enter a valid domain name.');
+      alert('Veuillez entrer un nom de domaine valide.');
     }
+  }
+
+  // Method to handle domain selection
+  onSelectDomain(domain: string) {
+    this.selectedDomain = domain;  // Store the selected domain
+    console.log('Selected Domain:', domain);
+
+    // You can add logic here to navigate to another page,
+    // add the domain to a cart, or start the registration process.
   }
 }

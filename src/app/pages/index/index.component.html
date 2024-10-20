@@ -1,48 +1,48 @@
 
 
 <!-- START HOME -->
+<!-- START HOME -->
 <section class="bg-home4 overflow-hidden" id="home">
     <div class="container">
         <div class="position-relative" style="z-index: 1;">
             <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-6">
                     <div>
-                        <h6 class="home-subtitle text-primary mb-4">Domain Search</h6>
-                        <h1>Find Your Perfect Domain</h1>
-                        <p class="text-black-50 fs-17 pt-4">Search for available domain names and explore pricing
-                            options for various TLDs.</p>
+                        <h6 class="home-subtitle text-primary mb-4">Recherche de domaine</h6>
+                        <h1>Trouvez le domaine parfait</h1>
+                        <p class="text-black-50 fs-17 pt-4">Recherchez des noms de domaine disponibles et explorez les options tarifaires pour différents TLD.</p>
                         
-                        <!-- START Domain Search Bar -->
+                        <!-- Domain Search Bar -->
                         <div class="text-center domain-search mt-4">
                             <input type="text" 
                                    class="form-control domain-input"
                                    [(ngModel)]="domainName"
-                                   placeholder="Enter domain name" />
+                                   placeholder="Entrez un nom de domaine" />
 
-                            <!-- Button to trigger domain search -->
                             <button class="btn btn-primary mt-3" (click)="onSearchDomain()">
-                                Check Domain
+                                Vérifier le domaine
                             </button>
 
                             <!-- Display domain suggestions -->
                             <div *ngIf="suggestions.length > 0" class="suggestions-list mt-3">
+                                <h5 class="text-primary">Domaines suggérés</h5>
                                 <ul class="list-group">
                                     <li *ngFor="let suggestion of suggestions" class="list-group-item">
-                                        <!-- Display the domain name -->
                                         {{ suggestion.domain }} 
-                                        <!-- Show status or price -->
                                         <span *ngIf="suggestion.status; else priceTemplate">
                                             - {{ suggestion.status }}
                                         </span>
-                                        <!-- Show the price if the status is not present -->
                                         <ng-template #priceTemplate>
                                             - {{ suggestion.price }}
                                         </ng-template>
+                                        <!-- Add Select Domain Button -->
+                                        <button class="btn btn-success" (click)="onSelectDomain(suggestion.domain)">
+                                            Sélectionner
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <!-- END Domain Search Bar -->
                     </div>
                 </div>
                 <!--end col-->
@@ -52,10 +52,8 @@
                     </div>
                 </div>
             </div>
-            <!--end row-->
         </div>
     </div>
-    <!--end container-->
 </section>
 
 <div class="position-relative">

@@ -54,7 +54,13 @@ export class DomainsService {
 
   // Get domain WHOIS information
   getWhoisInfo(domainName: string): Observable<any> {
-    const body = this.buildRequest('DomainWhois', { domain: domainName });
+    // Build the request with the 'DomainWhois' action and enable suggestions
+    const body = this.buildRequest('DomainWhois', { 
+        domain: domainName,
+        suggestion: true  // Enable domain suggestions
+    });
+
+    // Make the HTTP POST request to the WHMCS API
     return this.http.post(this.apiUrl, body.toString(), this.getHeaders());
   }
 
@@ -104,7 +110,7 @@ export class DomainsService {
 
   // Get TLD pricing
   getTldPricing(): Observable<any> {
-    const body = this.buildRequest('GetTLDPricing', {});
+    const body = this.buildRequest('GetTLDPricing', {suggestion: true });
     return this.http.post(this.apiUrl, body.toString(), this.getHeaders());
   }
 
