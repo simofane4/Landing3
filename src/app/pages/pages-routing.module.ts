@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { BloglistComponent } from './bloglist/bloglist.component';
 import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path:'blog-details',
     component:BlogdetailsComponent
+  },
+  {
+    path:'cart',
+    component:CartComponent
   }
 
 ];

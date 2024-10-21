@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DomainsService } from 'src/app/domains/domains.service';
+import { CartService } from 'src/app/layout/cart.service';
 
 @Component({
   selector: 'app-index',
@@ -12,7 +13,10 @@ export class IndexComponent {
   suggestions: any[] = [];
   selectedDomain: string = '';  // To store the selected domain
 
-  constructor(private domainsService: DomainsService) {}
+  constructor(
+    private domainsService: DomainsService,
+    private cartService: CartService  // Inject the CartService
+  ) {}
 
   // Method to search domain and get suggestions
   onSearchDomain() {
@@ -64,10 +68,14 @@ export class IndexComponent {
   }
 
   // Method to handle domain selection
-  onSelectDomain(domain: string) {
+  onSelectDomain(domain: string,price: string) {
     this.selectedDomain = domain;  // Store the selected domain
     console.log('Selected Domain:', domain);
+    // Add domain to the cart using CartService
+    this.cartService.addDomainToCart({ domain, price });
 
+    // Provide feedback to the user
+    alert(`${domain} has been added to your cart.`);
     // You can add logic here to navigate to another page,
     // add the domain to a cart, or start the registration process.
   }

@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Your Cart</h2>
+  
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <ul class="list-group">
+        <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{ item.domain }} - {{ item.price }} DH</span>
+          <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.domain)">Remove</button>
+        </li>
+      </ul>
+  
+      <div class="mt-4">
+        <h4>Total: {{ totalAmount }} DH</h4>
+        <button class="btn btn-primary" (click)="proceedToCheckout()">Proceed to Checkout</button>
+      </div>
+  
+      <!-- Suggested Products Section -->
+      <div class="mt-5">
+        <h4>Suggested Products</h4>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let product of productSuggestions">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>  <!-- Assuming 'name' is the product field -->
+                <p class="card-text">{{ product.price }} DH</p>  <!-- Assuming 'price' is the product field -->
+                <button class="btn btn-success" (click)="addProductToCart(product)">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Suggested Products Section -->
+  
+    </div>
+  
+    <ng-template #emptyCart>
+      <p>Your cart is empty. <a routerLink="/">Go back to add domains.</a></p>
+    </ng-template>
+  </div>
+  

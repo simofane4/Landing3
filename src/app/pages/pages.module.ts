@@ -15,11 +15,13 @@ import { IndexComponent } from './index/index.component';
 import { BloglistComponent } from './bloglist/bloglist.component';
 import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
 import { FormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 
 
 @NgModule({
   declarations: [
+    CartComponent,
     IndexComponent,
     BloglistComponent,
     BlogdetailsComponent
