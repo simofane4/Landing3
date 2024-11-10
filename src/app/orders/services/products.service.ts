@@ -15,6 +15,7 @@ export class ProductsService {
       action: 'GetProducts',
       username: environment.apiIdentifier,
       password: environment.apiSecret,
+      accesskey:environment.accesskey,
       //pid: '1',
       responsetype: 'json'
     });

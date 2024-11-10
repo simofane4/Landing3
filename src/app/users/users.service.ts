@@ -19,6 +19,7 @@ export class UsersService {
     body.set('password', environment.apiSecret);
     body.set('responsetype', 'json');
     Object.keys(params).forEach((key) => body.set(key, params[key]));
+    console.log(body)
     return body;
   }
 

@@ -16,10 +16,11 @@ export class AddUserComponent implements OnInit {
   constructor(private fb: FormBuilder, private usersService: UsersService) {
     // Initialize the form group with fields
     this.addUserForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', Validators.required],
+      password2: ['', [Validators.required, Validators.minLength(6)]],
+      
     });
   }
 

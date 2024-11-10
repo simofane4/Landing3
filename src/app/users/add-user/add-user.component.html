@@ -3,9 +3,16 @@
   
     <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
       <div>
-        <label for="username">Username:</label>
-        <input id="username" formControlName="username" type="text" />
-        <div *ngIf="addUserForm.get('username')?.invalid && addUserForm.get('username')?.touched">
+        <label for="firstname">firstname:</label>
+        <input id="firstname" formControlName="firstname" type="text" />
+        <div *ngIf="addUserForm.get('firstname')?.invalid && addUserForm.get('firstname')?.touched">
+          firstname must be at least 3 characters long.
+        </div>
+      </div>
+      <div>
+        <label for="lastname">Lastname:</label>
+        <input id="username" formControlName="lastname" type="text" />
+        <div *ngIf="addUserForm.get('lastname')?.invalid && addUserForm.get('lastname')?.touched">
           Username must be at least 3 characters long.
         </div>
       </div>
@@ -19,25 +26,14 @@
       </div>
   
       <div>
-        <label for="password">Password:</label>
-        <input id="password" formControlName="password" type="password" />
-        <div *ngIf="addUserForm.get('password')?.invalid && addUserForm.get('password')?.touched">
+        <label for="password2">Password:</label>
+        <input id="password2" formControlName="password2" type="password" />
+        <div *ngIf="addUserForm.get('password2')?.invalid && addUserForm.get('password2')?.touched">
           Password must be at least 6 characters long.
         </div>
       </div>
   
-      <div>
-        <label for="role">Role:</label>
-        <select id="role" formControlName="role">
-          <option value="" disabled>Select Role</option>
-          <option value="admin">Admin</option>
-          <option value="client">Client</option>
-          <option value="user">User</option>
-        </select>
-        <div *ngIf="addUserForm.get('role')?.invalid && addUserForm.get('role')?.touched">
-          Please select a role.
-        </div>
-      </div>
+      
   
       <button type="submit" [disabled]="loading">
         {{ loading ? 'Adding...' : 'Add User' }}
