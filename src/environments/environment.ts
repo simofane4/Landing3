@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    whmcsApiUrl: 'http://49.13.91.224:9000/api/whmcs',//'https://login.wget.ma/includes/api.php',
+    whmcsApiUrl:'https://login.wget.ma/includes/api.php',
     ///apiIdentifier:'WGET.f996af310cfc51bb6978c2049fd7ec13',
     //apiSecret:'pOyKxYOWrpBy8rYvzvHgeUcpGd5j8BJn2XQV1NTExuvWWrc0XiTCZoN/qzb+7SQMs5XQc+QoH5Pn6wjRGXLrsw==',
     apiIdentifier: 'PLAfTuv5XfgMDdsy0a6ETC3sjs9qFwLU',

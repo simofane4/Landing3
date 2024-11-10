@@ -16,8 +16,8 @@ export class ValidateLoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthenticationService) {
     // Initialize form with required fields
     this.validateLoginForm = this.fb.group({
-      username: ['', Validators.required], // Username
-      password: ['', Validators.required]  // Password
+      email: ['', Validators.required], // Username
+      password2: ['', Validators.required]  // Password
     });
   }
 
@@ -34,15 +34,17 @@ export class ValidateLoginComponent implements OnInit {
     this.successMessage = '';
     this.errorMessage = '';
 
-    const { username, password } = this.validateLoginForm.value;
+    const { email, password2 } = this.validateLoginForm.value;
 
-    this.authService.validateLogin(username, password).subscribe(
+    this.authService.validateLogin(email, password2).subscribe(
       (response) => {
         if (response.result === 'success') {
           this.successMessage = 'Login successful!';
           this.validateLoginForm.reset();
+          console.log(response);
         } else {
           this.errorMessage = 'Login failed: ' + response.message;
+          console.log(response);
         }
         this.loading = false;
       },

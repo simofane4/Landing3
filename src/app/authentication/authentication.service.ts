@@ -76,11 +76,14 @@ export class AuthenticationService {
   }
 
   // Validate Login
-  validateLogin(username: string, password: string): Observable<any> {
+  validateLogin(email: string, password2: string): Observable<any> {
     const body = new URLSearchParams();
     body.set('action', 'ValidateLogin');
-    body.set('username', username);
-    body.set('password2', password); // Assuming password2 is used, as per WHMCS's API requirements
+    body.set('username',environment.apiIdentifier);
+    body.set('password',environment.apiSecret);
+    body.set('accesskey',environment.accesskey);
+    body.set('email', email);
+    body.set('password2', password2); // Assuming password2 is used, as per WHMCS's API requirements
     body.set('responsetype', 'json');
 
     return this.http.post(this.apiUrl, body.toString(), {

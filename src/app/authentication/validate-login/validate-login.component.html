@@ -4,17 +4,17 @@
   
     <form [formGroup]="validateLoginForm" (ngSubmit)="onSubmit()">
       <div>
-        <label for="username">Username:</label>
-        <input id="username" formControlName="username" type="text" />
-        <div *ngIf="validateLoginForm.get('username')?.invalid && validateLoginForm.get('username')?.touched">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="validateLoginForm.get('email')?.invalid && validateLoginForm.get('email')?.touched">
           Username is required.
         </div>
       </div>
   
       <div>
-        <label for="password">Password:</label>
-        <input id="password" formControlName="password" type="password" />
-        <div *ngIf="validateLoginForm.get('password')?.invalid && validateLoginForm.get('password')?.touched">
+        <label for="password2">Password:</label>
+        <input id="password2" formControlName="password2" type="password" />
+        <div *ngIf="validateLoginForm.get('password2')?.invalid && validateLoginForm.get('password2')?.touched">
           Password is required.
         </div>
       </div>
